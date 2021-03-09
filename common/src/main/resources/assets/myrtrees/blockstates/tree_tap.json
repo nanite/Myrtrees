@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,flowing=false": {
+      "model": "myrtrees:block/tree_tap"
+    },
+    "facing=south,flowing=false": {
+      "model": "myrtrees:block/tree_tap",
+      "y": 180
+    },
+    "facing=west,flowing=false": {
+      "model": "myrtrees:block/tree_tap",
+      "y": 270
+    },
+    "facing=east,flowing=false": {
+      "model": "myrtrees:block/tree_tap",
+      "y": 90
+    },
+    "facing=north,flowing=true": {
+      "model": "myrtrees:block/tree_tap_flowing"
+    },
+    "facing=south,flowing=true": {
+      "model": "myrtrees:block/tree_tap_flowing",
+      "y": 180
+    },
+    "facing=west,flowing=true": {
+      "model": "myrtrees:block/tree_tap_flowing",
+      "y": 270
+    },
+    "facing=east,flowing=true": {
+      "model": "myrtrees:block/tree_tap_flowing",
+      "y": 90
+    }
+  }
+}
