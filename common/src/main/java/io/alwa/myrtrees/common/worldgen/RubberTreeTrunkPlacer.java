@@ -1,6 +1,8 @@
 package io.alwa.myrtrees.common.worldgen;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.alwa.myrtrees.common.Myrtrees;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelSimulatedRW;
@@ -15,13 +17,17 @@ import java.util.Random;
 import java.util.Set;
 
 public class RubberTreeTrunkPlacer extends TrunkPlacer {
+    public static final Codec<RubberTreeTrunkPlacer> CODEC = RecordCodecBuilder.create((instance) -> {
+        return trunkPlacerParts(instance).apply(instance, (RubberTreeTrunkPlacer::new));
+    });
+
     public RubberTreeTrunkPlacer(int i, int j, int k) {
         super(i, j, k);
     }
 
     @Override
     protected TrunkPlacerType<?> type() {
-        return TrunkPlacerType.STRAIGHT_TRUNK_PLACER;
+        return Myrtrees.RUBBER_TREE_TRUNK_PLACER;
     }
 
     @Override
@@ -30,8 +36,10 @@ public class RubberTreeTrunkPlacer extends TrunkPlacer {
 
         for (int j = 0; j < i; ++j) {
             if (j == 1) {
+                System.out.println("Placing tile entity");
                 levelSimulatedRW.setBlock(blockPos.above(j), Myrtrees.FILLED_RUBBER_WOOD.get().defaultBlockState(), 2);
             } else {
+                System.out.println("Placing other log");
                 placeLog(levelSimulatedRW, random, blockPos.above(j), set, boundingBox, treeConfiguration);
             }
         }

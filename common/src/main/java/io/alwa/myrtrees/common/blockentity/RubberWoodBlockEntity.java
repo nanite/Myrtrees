@@ -1,16 +1,18 @@
 package io.alwa.myrtrees.common.blockentity;
 
 import io.alwa.myrtrees.common.Myrtrees;
+import me.shedaniel.architectury.extensions.BlockEntityExtension;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
-public class RubberWoodBlockEntity extends BlockEntity {
-    private int latex;
+public class RubberWoodBlockEntity extends BlockEntity implements BlockEntityExtension {
+    public int latex;
 
     public RubberWoodBlockEntity() {
         super(Myrtrees.RUBBER_WOOD_ENTITY_TYPE.get());
-        this.latex = 1000;
+        this.latex = 10000;
     }
 
     public void load(BlockState blockState, CompoundTag compoundTag) {
@@ -24,4 +26,14 @@ public class RubberWoodBlockEntity extends BlockEntity {
         return compoundTag;
     }
 
+    @Override
+    public void loadClientData(@NotNull BlockState pos, @NotNull CompoundTag tag) {
+        latex = tag.getInt("latex");
+    }
+
+    @Override
+    public @NotNull CompoundTag saveClientData(@NotNull CompoundTag tag) {
+        tag.putInt("latex", latex);
+        return tag;
+    }
 }

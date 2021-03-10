@@ -1,7 +1,7 @@
 package io.alwa.myrtrees.common.block;
 
 import io.alwa.myrtrees.common.blockentity.RubberWoodBlockEntity;
-import io.alwa.myrtrees.common.blockentity.TreepTapBlockEntity;
+import io.alwa.myrtrees.common.blockentity.TreeTapBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -31,7 +31,7 @@ public class TreeTapBlock extends DirectionalBlock implements EntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockGetter blockGetter) {
-        return new TreepTapBlockEntity();
+        return new TreeTapBlockEntity();
     }
 
     @Nullable

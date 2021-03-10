@@ -7,6 +7,7 @@ public class MyrtreesModFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         Myrtrees.init();
+        Myrtrees.afterRegistries();
         Myrtrees.clientInit();
     }
 }

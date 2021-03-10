@@ -26,5 +26,8 @@
   },
   "suggests": {
     "flamingo": "*"
-  }
+  },
+  "mixins": [
+    "myrtrees.mixins.json"
+  ]
 }
