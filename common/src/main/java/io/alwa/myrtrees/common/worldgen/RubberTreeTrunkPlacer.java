@@ -36,10 +36,8 @@ public class RubberTreeTrunkPlacer extends TrunkPlacer {
 
         for (int j = 0; j < i; ++j) {
             if (j == 1) {
-                System.out.println("Placing tile entity");
                 levelSimulatedRW.setBlock(blockPos.above(j), Myrtrees.FILLED_RUBBER_WOOD.get().defaultBlockState(), 2);
             } else {
-                System.out.println("Placing other log");
                 placeLog(levelSimulatedRW, random, blockPos.above(j), set, boundingBox, treeConfiguration);
             }
         }
