@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 public class WoodenBucketBlockEntity extends BlockEntity implements BlockEntityExtension {
-    public int MAX_LATEX = 10000;
+    public int MAX_LATEX = 2000;
     public int latex;
 
     public WoodenBucketBlockEntity() {
