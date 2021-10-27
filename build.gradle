@@ -1,6 +1,6 @@
 plugins {
-    id "architectury-plugin" version "3.0-SNAPSHOT"
-    id "forgified-fabric-loom" version "0.6-SNAPSHOT" apply false
+    id "architectury-plugin" version "3.1-SNAPSHOT"
+    id "dev.architectury.loom" version "0.7.2-SNAPSHOT" apply false
 }
 
 architectury {
@@ -8,18 +8,16 @@ architectury {
 }
 
 subprojects {
-    apply plugin: "forgified-fabric-loom"
+    apply plugin: "dev.architectury.loom"
 
     loom {
         silentMojangMappingsLicense()
+        useFabricMixin = true
     }
 
     dependencies {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
-        // The following line declares the mojmap mappings, you may use other mappings as well
         mappings loom.officialMojangMappings()
-        // The following line declares the yarn mappings you may select this one as well.
-        // mappings "net.fabricmc:yarn:1.16.5+build.4"
     }
 }
 
@@ -27,17 +25,23 @@ allprojects {
     apply plugin: "java"
     apply plugin: "architectury-plugin"
     apply plugin: "maven-publish"
+    apply from: "https://files.latmod.com/public/markdown-git-changelog.gradle"
 
-    archivesBaseName = rootProject.archives_base_name
-    version = rootProject.mod_version
-    group = rootProject.maven_group
+    def ENV = System.getenv()
+    version = "${mod_version}-build.${ENV.GITHUB_RUN_NUMBER ?: 9999}"
+    group = project.mod_package
+    archivesBaseName = project.mod_name
 
-    repositories {
-        // Add repositories to retrieve artifacts from in here.
-        // You should only use this when depending on other mods because
-        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-        // for more information about repositories.
+    sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
+    configurations {
+        modOptional
+        modCompileOnly.extendsFrom(modOptional)
+        modRuntime.extendsFrom(modOptional)
+
+        optional
+        compileOnly.extendsFrom(optional)
+        runtime.extendsFrom(optional)
     }
 
     tasks.withType(JavaCompile) {
@@ -55,4 +59,19 @@ allprojects {
     java {
         withSourcesJar()
     }
+
+    repositories {
+        maven {
+            url "https://maven.architectury.dev/"
+        }
+
+        maven {
+            url "https://www.cursemaven.com"
+            content {
+                includeGroup "curse.maven"
+            }
+        }
+    }
 }
+
+task curseforgePublish

@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "io.alwa.mods.myrtrees.common.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinTrunkPlacerType"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
