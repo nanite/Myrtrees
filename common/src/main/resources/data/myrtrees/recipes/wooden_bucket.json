@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "myrtrees:wooden_bucket",
+  "pattern": [
+    "WPW",
+    " W "
+  ],
+  "key": {
+    "W": {
+      "tag": "minecraft:logs"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "myrtrees:wooden_bucket"
+  }
+}

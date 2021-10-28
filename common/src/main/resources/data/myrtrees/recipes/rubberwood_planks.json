@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "myrtrees:rubberwood_planks",
+  "ingredients": [
+    {
+      "item": "myrtrees:rubberwood_log"
+    }
+  ],
+  "result": {
+    "item": "myrtrees:rubberwood_planks",
+    "count": 4
+  }
+}
