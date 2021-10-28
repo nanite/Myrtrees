@@ -7,11 +7,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-public class RubberWoodBlockEntity extends BlockEntity implements BlockEntityExtension {
+public class FilledRubberwoodLogBlockEntity extends BlockEntity implements BlockEntityExtension {
     public int latex;
 
-    public RubberWoodBlockEntity() {
-        super(MyrtreesBlockEntities.RUBBER_WOOD.get());
+    public FilledRubberwoodLogBlockEntity() {
+        super(MyrtreesBlockEntities.FILLED_RUBBERWOOD_LOG.get());
         this.latex = MyrtreesConfig.TREE_CAPACITY;
     }
 

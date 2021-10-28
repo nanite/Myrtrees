@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "myrtrees:block/rubber_wood_inner",
-    "side": "myrtrees:block/rubber_wood"
-  }
-}

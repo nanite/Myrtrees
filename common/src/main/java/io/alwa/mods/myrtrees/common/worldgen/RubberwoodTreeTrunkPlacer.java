@@ -17,10 +17,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-public class RubberTreeTrunkPlacer extends TrunkPlacer {
-    public static final Codec<RubberTreeTrunkPlacer> CODEC = RecordCodecBuilder.create(instance -> trunkPlacerParts(instance).apply(instance, RubberTreeTrunkPlacer::new));
+public class RubberwoodTreeTrunkPlacer extends TrunkPlacer {
+    public static final Codec<RubberwoodTreeTrunkPlacer> CODEC = RecordCodecBuilder.create(instance -> trunkPlacerParts(instance).apply(instance, RubberwoodTreeTrunkPlacer::new));
 
-    public RubberTreeTrunkPlacer(int x, int y, int z) {
+    public RubberwoodTreeTrunkPlacer(int x, int y, int z) {
         super(x, y, z);
     }
 
@@ -35,7 +35,7 @@ public class RubberTreeTrunkPlacer extends TrunkPlacer {
 
         for (int j = 0; j < i; ++j) {
             if (j == 1) {
-                levelSimulatedRW.setBlock(blockPos.above(j), MyrtreesBlocks.FILLED_RUBBER_WOOD.get().defaultBlockState(), 2);
+                levelSimulatedRW.setBlock(blockPos.above(j), MyrtreesBlocks.FILLED_RUBBERWOOD_LOG.get().defaultBlockState(), 2);
             } else {
                 placeLog(levelSimulatedRW, random, blockPos.above(j), set, boundingBox, treeConfiguration);
             }

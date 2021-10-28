@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "myrtrees:rubber_planks"
+          "name": "myrtrees:rubberwood_log"
         }
       ],
       "conditions": [

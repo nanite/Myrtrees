@@ -1,6 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "myrtrees:item/rubber_sapling"
-  }
-}

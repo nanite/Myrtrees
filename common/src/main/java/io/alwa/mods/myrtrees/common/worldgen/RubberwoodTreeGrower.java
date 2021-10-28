@@ -13,15 +13,15 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class RubberTreeGrower extends AbstractTreeGrower {
+public class RubberwoodTreeGrower extends AbstractTreeGrower {
 
-    public static TreeConfiguration getRubberTreeConfiguration() {
-        return (new TreeConfiguration.TreeConfigurationBuilder(new SimpleStateProvider(MyrtreesBlocks.RUBBER_WOOD.get().defaultBlockState()), new SimpleStateProvider(MyrtreesBlocks.RUBBER_LEAVES.get().defaultBlockState()), new BlobFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 3), new RubberTreeTrunkPlacer(5, 3, 0), new TwoLayersFeatureSize(1, 0, 1))).ignoreVines().build();
+    public static TreeConfiguration getRubberwoodTreeConfiguration() {
+        return (new TreeConfiguration.TreeConfigurationBuilder(new SimpleStateProvider(MyrtreesBlocks.RUBBERWOOD_LOG.get().defaultBlockState()), new SimpleStateProvider(MyrtreesBlocks.RUBBERWOOD_LEAVES.get().defaultBlockState()), new BlobFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 3), new RubberwoodTreeTrunkPlacer(5, 3, 0), new TwoLayersFeatureSize(1, 0, 1))).ignoreVines().build();
     }
 
     @Nullable
     @Override
     protected ConfiguredFeature<TreeConfiguration, ?> getConfiguredFeature(Random random, boolean bl) {
-        return Feature.TREE.configured(getRubberTreeConfiguration());
+        return Feature.TREE.configured(getRubberwoodTreeConfiguration());
     }
 }

@@ -49,10 +49,13 @@ public class WoodenBucketBlock extends Block implements EntityBlock {
             WoodenBucketBlockEntity bucket = (WoodenBucketBlockEntity) blockEntity;
             if (!level.isClientSide && player.isCreative()) {
                 ItemStack itemStack = new ItemStack(MyrtreesItems.WOODEN_BUCKET.get());
-                CompoundTag compoundTag = new CompoundTag();
-                compoundTag.putInt("latex", bucket.latex);
-                if (!compoundTag.isEmpty()) {
-                    itemStack.addTagElement("BlockEntityTag", compoundTag);
+
+                if (bucket.latex > 0) {
+                    CompoundTag compoundTag = new CompoundTag();
+                    compoundTag.putInt("latex", bucket.latex);
+                    if (!compoundTag.isEmpty()) {
+                        itemStack.addTagElement("BlockEntityTag", compoundTag);
+                    }
                 }
 
                 ItemEntity itemEntity = new ItemEntity(level, (double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, itemStack);
@@ -87,7 +90,7 @@ public class WoodenBucketBlock extends Block implements EntityBlock {
             }
 
             if (!level.isClientSide()) {
-                player.displayClientMessage(new TextComponent(String.format("%,2d / %,2d", e.latex, MyrtreesConfig.BUCKET_CAPACITY)), true);
+                player.displayClientMessage(new TextComponent(String.format("%,d / %,d", e.latex, MyrtreesConfig.BUCKET_CAPACITY)), true);
             }
         }
 
@@ -98,7 +101,7 @@ public class WoodenBucketBlock extends Block implements EntityBlock {
     @Environment(EnvType.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> list, TooltipFlag flag) {
         if (stack.hasTag() && stack.getTag().contains("BlockEntityTag")) {
-            list.add(new TextComponent(String.format("%,2d / %,2d", stack.getTag().getCompound("BlockEntityTag").getInt("latex"), MyrtreesConfig.BUCKET_CAPACITY)).withStyle(ChatFormatting.GRAY));
+            list.add(new TextComponent(String.format("%,d / %,d", stack.getTag().getCompound("BlockEntityTag").getInt("latex"), MyrtreesConfig.BUCKET_CAPACITY)).withStyle(ChatFormatting.GRAY));
         }
     }
 }

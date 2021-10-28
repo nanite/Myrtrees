@@ -2,9 +2,9 @@
   "parent": "block/block",
   "credit": "Made with Blockbench",
   "textures": {
-    "0": "myrtrees:block/rubber_wood",
-    "1": "myrtrees:block/rubber_wood_inner",
-    "particle": "myrtrees:block/rubber_wood"
+    "0": "myrtrees:block/rubberwood_log",
+    "1": "myrtrees:block/rubberwood_log_top",
+    "particle": "myrtrees:block/rubberwood_log"
   },
   "elements": [
     {
