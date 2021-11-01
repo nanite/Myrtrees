@@ -118,7 +118,7 @@ publishing {
             maven {
                 url "https://maven.saps.dev/minecraft"
                 credentials {
-                    username = "Jake_E"
+                    username = "jake_e"
                     password = "${ENV.SAPS_TOKEN}"
                 }
             }
