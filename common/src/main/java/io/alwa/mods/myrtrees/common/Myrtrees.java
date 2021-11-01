@@ -38,13 +38,15 @@ public class Myrtrees {
     }
 
     public static void afterRegistries() {
-        RUBBER_TREE_FEATURE = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "rubberwood_tree"), Feature.TREE.configured(RubberwoodTreeGrower.getRubberwoodTreeConfiguration()));
+        RUBBER_TREE_FEATURE = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "rubberwood_tree"), Feature.TREE.configured(RubberwoodTreeGrower.getRubberwoodTreeConfiguration()).chance(MyrtreesConfig.TREE_CHANCE).squared());
         RUBBER_TREE_TRUNK_PLACER = MixinTrunkPlacerType.callRegister("rubberwood_tree_placer", RubberwoodTreeTrunkPlacer.CODEC);
     }
 
-    private static void biomeModifications(BiomeModifications.BiomeContext biomeContext, BiomeProperties.Mutable mutable) {
-        if (MyrtreesConfig.ALL_BIOMES || biomeContext.getProperties().getCategory() == Biome.BiomeCategory.JUNGLE) {
-            mutable.getGenerationProperties().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RUBBER_TREE_FEATURE);
+    private static void biomeModifications(BiomeModifications.BiomeContext context, BiomeProperties.Mutable properties) {
+        Biome.BiomeCategory c = context.getProperties().getCategory();
+
+        if (c == Biome.BiomeCategory.JUNGLE || (!MyrtreesConfig.ONLY_JUNGLE && (c == Biome.BiomeCategory.FOREST || c == Biome.BiomeCategory.SWAMP || c == Biome.BiomeCategory.SAVANNA))) {
+            properties.getGenerationProperties().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RUBBER_TREE_FEATURE);
         }
     }
 
