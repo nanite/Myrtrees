@@ -1,7 +1,8 @@
 {
   "variants": {
-    "": {
-      "model": "myrtrees:block/wooden_bucket"
-    }
+    "facing=north": { "model": "myrtrees:block/wooden_bucket" },
+    "facing=east": { "model": "myrtrees:block/wooden_bucket", "y":  90},
+    "facing=south": { "model": "myrtrees:block/wooden_bucket", "y":  180},
+    "facing=west": { "model": "myrtrees:block/wooden_bucket", "y":  270}
   }
 }
