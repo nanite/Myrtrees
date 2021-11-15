@@ -14,6 +14,7 @@ public class TreeTapBlockEntity extends BlockEntity implements TickableBlockEnti
 
     @Override
     public void tick() {
+        if (level.isClientSide()) return;
         BlockState tap = this.getBlockState();
         Direction facing = tap.getValue(TreeTapBlock.FACING);
 
@@ -25,6 +26,8 @@ public class TreeTapBlockEntity extends BlockEntity implements TickableBlockEnti
                 level.setBlock(getBlockPos(), tap.setValue(TreeTapBlock.FLOWING, true), 2);
                 ((WoodenBucketBlockEntity) bucket).latex += MyrtreesConfig.TAP_TRANSFER_RATE;
                 ((FilledRubberwoodLogBlockEntity) log).latex -= MyrtreesConfig.TAP_TRANSFER_RATE;
+                bucket.setChanged();
+                level.sendBlockUpdated(bucket.getBlockPos(), bucket.getBlockState(), bucket.getBlockState(), 11);
             } else if (tap.getValue(TreeTapBlock.FLOWING)) {
                 level.setBlock(getBlockPos(), tap.setValue(TreeTapBlock.FLOWING, false), 2);
             }

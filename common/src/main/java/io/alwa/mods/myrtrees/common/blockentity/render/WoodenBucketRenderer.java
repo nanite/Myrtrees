@@ -13,7 +13,10 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+
+import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
 
 public class WoodenBucketRenderer extends BlockEntityRenderer<WoodenBucketBlockEntity> {
 
@@ -34,13 +37,10 @@ public class WoodenBucketRenderer extends BlockEntityRenderer<WoodenBucketBlockE
         float o0 = 4.00F / 16F;
         float o1 = 12.00F / 16F;
 
-        float y0 = 1.10F / 16F;
+        float y0 = 6 / 16F;
         float y11 = 10.8F / 16F;
 
         float fluidLevel = y0 + ((y11 - y0) * amount / (float) MyrtreesConfig.BUCKET_CAPACITY);
-
-        Matrix4f m = poseStack.last().pose();
-        Matrix3f n = poseStack.last().normal();
 
 
         VertexConsumer buffer = multiBufferSource.getBuffer(RenderType.translucent());
@@ -60,47 +60,33 @@ public class WoodenBucketRenderer extends BlockEntityRenderer<WoodenBucketBlockE
         int g = (color >> 8) & 0xFF;
         int b = color & 0xFF;
 
+
+        Direction facing = bucket.getBlockState().getValue(FACING);
+
+        o0 = 4.0f / 16f;
+        o1 = 12.0f / 16f;
+        float translation = 3.0f / 16f;
+
+        poseStack.pushPose();
+        if (facing.getAxis() == Direction.Axis.X) {
+            poseStack.translate(facing.getAxisDirection() == Direction.AxisDirection.NEGATIVE ? translation : -translation, 0, 0);
+        } else {
+            poseStack.translate(0, 0, facing.getAxisDirection() == Direction.AxisDirection.NEGATIVE ? translation : -translation);
+        }
+        Matrix4f m = poseStack.last().pose();
+        Matrix3f n = poseStack.last().normal();
         LevelRenderer renderer = (x, z, u, v) -> buffer.vertex(m, x, fluidLevel, z).color(r, g, b, a).uv(u, v).overlayCoords(j).uv2(i).normal(n, 0, 1, 0).endVertex();
+        renderer.vertex(o0, o0, u0 + uo, v0 + vo);
+        renderer.vertex(o0, o1, u1 - uo, v0 + vo);
+        renderer.vertex(o1, o1, u1 - uo, v1 - vo);
+        renderer.vertex(o1, o0, u0 + uo, v1 - vo);
+        poseStack.popPose();
+//
+//        renderer.vertex(o0, o0, u0 + uo, v0 + vo);
+//        renderer.vertex(o0, o1, u1 - uo, v0 + vo);
+//        renderer.vertex(o1, o1, u1 - uo, v1 - vo);
+//        renderer.vertex(o1, o0, u0 + uo, v1 - vo);
 
-        if (fluidLevel >= 0.18999999999990003 && fluidLevel <= 0.37187500000000007D) {
-            o0 = 3.00F / 16F;
-            o1 = 13.00F / 16F;
-        }
-        if (fluidLevel >= 0.37187500000000007) {
-            o0 = 3.00F / 16F;
-            o1 = 13.00F / 16F;
-
-            // West
-            renderer.vertex(2F / 16F, 4F / 16F, u0 + uo, v0 + vo);
-            renderer.vertex(2F / 16F, 12F / 16F, u1 - uo, v0 + vo);
-            renderer.vertex(3F / 16F, 12F / 16F, u1 - uo, v1 - vo);
-            renderer.vertex(3F / 16F, 4F / 16F, u0 + uo, v1 - vo);
-
-            // South
-            renderer.vertex(4F / 16F, 13F / 16F, u0 + uo, v0 + vo);
-            renderer.vertex(4F / 16F, 14F / 16F, u1 - uo, v0 + vo);
-            renderer.vertex(12F / 16F, 14F / 16F, u1 - uo, v1 - vo);
-            renderer.vertex(12F / 16F, 13F / 16F, u0 + uo, v1 - vo);
-
-            // East
-            renderer.vertex(13F / 16F, 4F / 16F, u0 + uo, v0 + vo);
-            renderer.vertex(13F / 16F, 12F / 16F, u1 - uo, v0 + vo);
-            renderer.vertex(14F / 16F, 12F / 16F, u1 - uo, v1 - vo);
-            renderer.vertex(14F / 16F, 4F / 16F, u0 + uo, v1 - vo);
-
-            // North
-            renderer.vertex(4F / 16F, 2F / 16F, u0 + uo, v0 + vo);
-            renderer.vertex(4F / 16F, 3F / 16F, u1 - uo, v0 + vo);
-            renderer.vertex(12F / 16F, 3F / 16F, u1 - uo, v1 - vo);
-            renderer.vertex(12F / 16F, 2F / 16F, u0 + uo, v1 - vo);
-        }
-        //UP
-        if (fluidLevel < 1D) {
-            renderer.vertex(o0, o0, u0 + uo, v0 + vo);
-            renderer.vertex(o0, o1, u1 - uo, v0 + vo);
-            renderer.vertex(o1, o1, u1 - uo, v1 - vo);
-            renderer.vertex(o1, o0, u0 + uo, v1 - vo);
-        }
     }
 
     private interface LevelRenderer {
