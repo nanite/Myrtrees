@@ -12,7 +12,12 @@ import java.util.function.Supplier;
 public interface MyrtreesItems {
     DeferredRegister<Item> REGISTRY = DeferredRegister.create(Myrtrees.MOD_ID, Registry.ITEM_REGISTRY);
 
+    default Supplier<Item> register(String name, Supplier<Item> item) {
+        return REGISTRY.register(name, item);
+    }
+
     Supplier<Item> RUBBERWOOD_LOG = REGISTRY.register("rubberwood_log", () -> new BlockItem(MyrtreesBlocks.RUBBERWOOD_LOG.get(), new Item.Properties().tab(Myrtrees.TAB)));
+    Supplier<Item> STRIPPED_RUBBERWOOD_LOG = REGISTRY.register("stripped_rubberwood_log", () -> new BlockItem(MyrtreesBlocks.STRIPPED_RUBBERWOOD_LOG.get(), new Item.Properties().tab(Myrtrees.TAB)));
     Supplier<Item> RUBBERWOOD_PLANKS = REGISTRY.register("rubberwood_planks", () -> new BlockItem(MyrtreesBlocks.RUBBERWOOD_PLANKS.get(), new Item.Properties().tab(Myrtrees.TAB)));
     Supplier<Item> RUBBERWOOD_LEAVES = REGISTRY.register("rubberwood_leaves", () -> new BlockItem(MyrtreesBlocks.RUBBERWOOD_LEAVES.get(), new Item.Properties().tab(Myrtrees.TAB)));
     Supplier<Item> RUBBERWOOD_SAPLING = REGISTRY.register("rubberwood_sapling", () -> new BlockItem(MyrtreesBlocks.RUBBERWOOD_SAPLING.get(), new Item.Properties().tab(Myrtrees.TAB)));

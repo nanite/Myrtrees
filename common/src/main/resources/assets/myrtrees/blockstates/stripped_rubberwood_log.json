@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "myrtrees:block/stripped_rubberwood_log"
+    },
+    "axis=z": {
+      "model": "myrtrees:block/stripped_rubberwood_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "myrtrees:block/stripped_rubberwood_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=none": {
+      "model": "oak_bark"
+    }
+  }
+}

@@ -11,6 +11,7 @@ public interface MyrtreesBlocks {
     DeferredRegister<Block> REGISTRY = DeferredRegister.create(Myrtrees.MOD_ID, Registry.BLOCK_REGISTRY);
 
     Supplier<Block> RUBBERWOOD_LOG = REGISTRY.register("rubberwood_log", RubberwoodLogBlock::new);
+    Supplier<Block> STRIPPED_RUBBERWOOD_LOG = REGISTRY.register("stripped_rubberwood_log", RubberwoodLogBlock::new);
     Supplier<Block> RUBBERWOOD_PLANKS = REGISTRY.register("rubberwood_planks", RubberwoodPlanksBlock::new);
     Supplier<Block> RUBBERWOOD_LEAVES = REGISTRY.register("rubberwood_leaves", RubberwoodLeavesBlock::new);
     Supplier<Block> RUBBERWOOD_SAPLING = REGISTRY.register("rubberwood_sapling", RubberwoodSaplingBlock::new);

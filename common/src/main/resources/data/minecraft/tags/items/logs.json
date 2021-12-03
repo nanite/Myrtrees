@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "myrtrees:rubberwood_log"
+    "myrtrees:rubberwood_log",
+    "myrtrees:stripped_rubberwood_log"
   ]
 }
