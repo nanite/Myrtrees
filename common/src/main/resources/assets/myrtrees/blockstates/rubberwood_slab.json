@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "myrtrees:block/rubberwood_slab"
+    },
+    "type=double": {
+      "model": "myrtrees:block/rubberwood_planks"
+    },
+    "type=top": {
+      "model": "myrtrees:block/rubberwood_slab_top"
+    }
+  }
+}

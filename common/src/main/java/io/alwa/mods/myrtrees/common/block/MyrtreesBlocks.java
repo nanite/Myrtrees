@@ -13,6 +13,8 @@ public interface MyrtreesBlocks {
     Supplier<Block> RUBBERWOOD_LOG = REGISTRY.register("rubberwood_log", RubberwoodLogBlock::new);
     Supplier<Block> STRIPPED_RUBBERWOOD_LOG = REGISTRY.register("stripped_rubberwood_log", RubberwoodLogBlock::new);
     Supplier<Block> RUBBERWOOD_PLANKS = REGISTRY.register("rubberwood_planks", RubberwoodPlanksBlock::new);
+    Supplier<Block> RUBBERWOOD_SLAB = REGISTRY.register("rubberwood_slab", RubberwoodSlabBlock::new);
+    Supplier<Block> RUBBERWOOD_STAIRS = REGISTRY.register("rubberwood_stairs", RubberwoodStairBlock::new);
     Supplier<Block> RUBBERWOOD_LEAVES = REGISTRY.register("rubberwood_leaves", RubberwoodLeavesBlock::new);
     Supplier<Block> RUBBERWOOD_SAPLING = REGISTRY.register("rubberwood_sapling", RubberwoodSaplingBlock::new);
     Supplier<Block> FILLED_RUBBERWOOD_LOG = REGISTRY.register("filled_rubberwood_log", FilledRubberwoodLogBlock::new);
