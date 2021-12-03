@@ -1,7 +1,7 @@
 package io.alwa.mods.myrtrees.common.block;
 
+import dev.architectury.registry.registries.DeferredRegister;
 import io.alwa.mods.myrtrees.common.Myrtrees;
-import me.shedaniel.architectury.registry.DeferredRegister;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.Block;
 

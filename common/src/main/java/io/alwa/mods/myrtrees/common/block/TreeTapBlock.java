@@ -40,12 +40,6 @@ public class TreeTapBlock extends HorizontalDirectionalBlock implements EntityBl
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockGetter blockGetter) {
-        return new TreeTapBlockEntity();
-    }
-
-    @Nullable
-    @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         if (blockPlaceContext.getClickedFace().getAxis() == Direction.Axis.Y) {
             return null;
@@ -97,5 +91,19 @@ public class TreeTapBlock extends HorizontalDirectionalBlock implements EntityBl
             double z = blockPos.getZ() + 0.5D + facing.getStepZ() * 0.3D;
             level.addParticle(ParticleTypes.END_ROD, x, y, z, 0D, 0D, 0D);
         }
+    }
+
+
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new TreeTapBlockEntity(blockPos, blockState);
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
+        return level.isClientSide() ? null : TreeTapBlockEntity::tick;
     }
 }

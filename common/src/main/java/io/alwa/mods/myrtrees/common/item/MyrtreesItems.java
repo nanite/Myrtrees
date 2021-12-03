@@ -1,8 +1,8 @@
 package io.alwa.mods.myrtrees.common.item;
 
+import dev.architectury.registry.registries.DeferredRegister;
 import io.alwa.mods.myrtrees.common.Myrtrees;
 import io.alwa.mods.myrtrees.common.block.MyrtreesBlocks;
-import me.shedaniel.architectury.registry.DeferredRegister;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;

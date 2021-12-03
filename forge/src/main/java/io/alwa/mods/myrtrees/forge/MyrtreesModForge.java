@@ -1,7 +1,7 @@
 package io.alwa.mods.myrtrees.forge;
 
+import dev.architectury.platform.forge.EventBuses;
 import io.alwa.mods.myrtrees.common.Myrtrees;
-import me.shedaniel.architectury.platform.forge.EventBuses;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;

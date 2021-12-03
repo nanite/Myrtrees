@@ -12,15 +12,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class FilledRubberwoodLogBlock extends RubberwoodLogBlock implements EntityBlock {
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockGetter blockGetter) {
-        return new FilledRubberwoodLogBlockEntity();
-    }
-
     @Environment(EnvType.CLIENT)
     @Override
     public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState) {
         return new ItemStack(MyrtreesBlocks.RUBBERWOOD_LOG.get().asItem());
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new FilledRubberwoodLogBlockEntity(blockPos, blockState);
     }
 }

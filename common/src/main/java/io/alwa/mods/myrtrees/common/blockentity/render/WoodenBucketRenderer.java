@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Direction;
@@ -18,13 +19,12 @@ import net.minecraft.resources.ResourceLocation;
 
 import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
 
-public class WoodenBucketRenderer extends BlockEntityRenderer<WoodenBucketBlockEntity> {
+public class WoodenBucketRenderer implements BlockEntityRenderer<WoodenBucketBlockEntity> {
+
+    public WoodenBucketRenderer(BlockEntityRendererProvider.Context context) {}
+
 
     public static ResourceLocation LATEX_TEXTURE = new ResourceLocation("myrtrees:block/latex");
-
-    public WoodenBucketRenderer(BlockEntityRenderDispatcher blockEntityRenderDispatcher) {
-        super(blockEntityRenderDispatcher);
-    }
 
     @Override
     public void render(WoodenBucketBlockEntity bucket, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j) {
@@ -81,12 +81,6 @@ public class WoodenBucketRenderer extends BlockEntityRenderer<WoodenBucketBlockE
         renderer.vertex(o1, o1, u1 - uo, v1 - vo);
         renderer.vertex(o1, o0, u0 + uo, v1 - vo);
         poseStack.popPose();
-//
-//        renderer.vertex(o0, o0, u0 + uo, v0 + vo);
-//        renderer.vertex(o0, o1, u1 - uo, v0 + vo);
-//        renderer.vertex(o1, o1, u1 - uo, v1 - vo);
-//        renderer.vertex(o1, o0, u0 + uo, v1 - vo);
-
     }
 
     private interface LevelRenderer {
