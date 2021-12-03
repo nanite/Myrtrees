@@ -47,7 +47,7 @@ public class TreeTapBlock extends HorizontalDirectionalBlock implements EntityBl
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
-        if (blockPlaceContext.getClickedFace().getAxis() == Direction.Axis.Y) {
+        if (blockPlaceContext.getClickedFace().getAxis().isVertical()) {
             return null;
         }
         return this.defaultBlockState().setValue(FACING, blockPlaceContext.getClickedFace().getOpposite()).setValue(FLOWING, false);

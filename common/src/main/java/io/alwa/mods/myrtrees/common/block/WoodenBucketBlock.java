@@ -55,6 +55,9 @@ public class WoodenBucketBlock extends Block implements EntityBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
+        if (context.getClickedFace().getAxis().isVertical()) {
+            return null;
+        }
         return this.defaultBlockState().setValue(FACING, context.getClickedFace());
     }
 
