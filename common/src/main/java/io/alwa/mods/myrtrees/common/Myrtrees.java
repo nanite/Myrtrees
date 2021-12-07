@@ -9,6 +9,7 @@ import io.alwa.mods.myrtrees.common.worldgen.RubberwoodTreeTrunkPlacer;
 import me.shedaniel.architectury.hooks.biome.BiomeProperties;
 import me.shedaniel.architectury.registry.BiomeModifications;
 import me.shedaniel.architectury.registry.CreativeTabs;
+import me.shedaniel.architectury.registry.fuel.FuelRegistry;
 import me.shedaniel.architectury.utils.EnvExecutor;
 import net.fabricmc.api.EnvType;
 import net.minecraft.core.Registry;
@@ -40,6 +41,7 @@ public class Myrtrees {
     public static void afterRegistries() {
         RUBBER_TREE_FEATURE = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(MOD_ID, "rubberwood_tree"), Feature.TREE.configured(RubberwoodTreeGrower.getRubberwoodTreeConfiguration()).chance(MyrtreesConfig.TREE_CHANCE).squared());
         RUBBER_TREE_TRUNK_PLACER = MixinTrunkPlacerType.callRegister("rubberwood_tree_placer", RubberwoodTreeTrunkPlacer.CODEC);
+        FuelRegistry.register(300, MyrtreesItems.RUBBERWOOD_LOG.get(), MyrtreesItems.RUBBERWOOD_PLANKS.get());
     }
 
     private static void biomeModifications(BiomeModifications.BiomeContext context, BiomeProperties.Mutable properties) {
