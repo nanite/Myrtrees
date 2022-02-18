@@ -14,9 +14,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public class RubberwoodTreeGrower extends AbstractTreeGrower {
-
     public static TreeConfiguration getRubberwoodTreeConfiguration() {
-        return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(MyrtreesBlocks.RUBBERWOOD_LOG.get()), new RubberwoodTreeTrunkPlacer(5, 3, 0), BlockStateProvider.simple(MyrtreesBlocks.RUBBERWOOD_LEAVES.get().defaultBlockState()), new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build();
+        return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(MyrtreesBlocks.RUBBERWOOD_LOG.get()), new RubberwoodTreeTrunkPlacer(5, 3, 0), BlockStateProvider.simple(MyrtreesBlocks.RUBBERWOOD_LEAVES.get().defaultBlockState()), new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build();
     }
 
     @Nullable
