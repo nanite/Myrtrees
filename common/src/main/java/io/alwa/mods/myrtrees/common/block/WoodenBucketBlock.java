@@ -91,8 +91,7 @@ public class WoodenBucketBlock extends Block implements EntityBlock {
     @Override
     public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
-        if (blockEntity instanceof WoodenBucketBlockEntity) {
-            WoodenBucketBlockEntity bucket = (WoodenBucketBlockEntity) blockEntity;
+        if (blockEntity instanceof WoodenBucketBlockEntity bucket) {
             if (!level.isClientSide && player.isCreative()) {
                 ItemStack itemStack = new ItemStack(MyrtreesItems.WOODEN_BUCKET.get());
 
@@ -113,8 +112,8 @@ public class WoodenBucketBlock extends Block implements EntityBlock {
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockGetter blockGetter) {
-        return new WoodenBucketBlockEntity();
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new WoodenBucketBlockEntity(pos, state);
     }
 
     @Override
@@ -123,9 +122,7 @@ public class WoodenBucketBlock extends Block implements EntityBlock {
 
         BlockEntity entity = level.getBlockEntity(pos);
 
-        if (entity instanceof WoodenBucketBlockEntity) {
-            WoodenBucketBlockEntity e = (WoodenBucketBlockEntity) entity;
-
+        if (entity instanceof WoodenBucketBlockEntity e) {
             if (e.latex >= MyrtreesConfig.LATEX_FOR_ITEM) {
                 e.latex -= MyrtreesConfig.LATEX_FOR_ITEM;
 

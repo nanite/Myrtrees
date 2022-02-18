@@ -9,7 +9,6 @@ import io.alwa.mods.myrtrees.common.blockentity.WoodenBucketBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.TextureAtlas;
@@ -20,9 +19,8 @@ import net.minecraft.resources.ResourceLocation;
 import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
 
 public class WoodenBucketRenderer implements BlockEntityRenderer<WoodenBucketBlockEntity> {
-
-    public WoodenBucketRenderer(BlockEntityRendererProvider.Context context) {}
-
+    public WoodenBucketRenderer(BlockEntityRendererProvider.Context context) {
+    }
 
     public static ResourceLocation LATEX_TEXTURE = new ResourceLocation("myrtrees:block/latex");
 
@@ -63,8 +61,6 @@ public class WoodenBucketRenderer implements BlockEntityRenderer<WoodenBucketBlo
 
         Direction facing = bucket.getBlockState().getValue(FACING);
 
-        o0 = 4.0f / 16f;
-        o1 = 12.0f / 16f;
         float translation = 3.0f / 16f;
 
         poseStack.pushPose();
@@ -75,15 +71,10 @@ public class WoodenBucketRenderer implements BlockEntityRenderer<WoodenBucketBlo
         }
         Matrix4f m = poseStack.last().pose();
         Matrix3f n = poseStack.last().normal();
-        LevelRenderer renderer = (x, z, u, v) -> buffer.vertex(m, x, fluidLevel, z).color(r, g, b, a).uv(u, v).overlayCoords(j).uv2(i).normal(n, 0, 1, 0).endVertex();
-        renderer.vertex(o0, o0, u0 + uo, v0 + vo);
-        renderer.vertex(o0, o1, u1 - uo, v0 + vo);
-        renderer.vertex(o1, o1, u1 - uo, v1 - vo);
-        renderer.vertex(o1, o0, u0 + uo, v1 - vo);
+        buffer.vertex(m, o0, fluidLevel, o0).color(r, g, b, a).uv(u0 + uo, v0 + vo).overlayCoords(j).uv2(i).normal(n, 0, 1, 0).endVertex();
+        buffer.vertex(m, o0, fluidLevel, o1).color(r, g, b, a).uv(u1 - uo, v0 + vo).overlayCoords(j).uv2(i).normal(n, 0, 1, 0).endVertex();
+        buffer.vertex(m, o1, fluidLevel, o1).color(r, g, b, a).uv(u1 - uo, v1 - vo).overlayCoords(j).uv2(i).normal(n, 0, 1, 0).endVertex();
+        buffer.vertex(m, o1, fluidLevel, o0).color(r, g, b, a).uv(u0 + uo, v1 - vo).overlayCoords(j).uv2(i).normal(n, 0, 1, 0).endVertex();
         poseStack.popPose();
-    }
-
-    private interface LevelRenderer {
-        void vertex(float x, float z, float u, float v);
     }
 }

@@ -4,21 +4,19 @@ import io.alwa.mods.myrtrees.common.MyrtreesConfig;
 import io.alwa.mods.myrtrees.common.block.TreeTapBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.SpawnerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class TreeTapBlockEntity extends BlockEntity implements TickableBlockEntity {
-    public TreeTapBlockEntity() {
-        super(MyrtreesBlockEntities.TREE_TAP.get());
+public class TreeTapBlockEntity extends BlockEntity {
+    public TreeTapBlockEntity(BlockPos pos, BlockState state) {
+        super(MyrtreesBlockEntities.TREE_TAP.get(), pos, state);
     }
 
     public static <T extends BlockEntity> void tick(Level level, BlockPos blockPos, BlockState blockState, T blockEntity) {
-        if (!(blockEntity instanceof TreeTapBlockEntity)) return;
+        if (!(blockEntity instanceof TreeTapBlockEntity)) {
+            return;
+        }
         BlockState tap = blockEntity.getBlockState();
         Direction facing = tap.getValue(TreeTapBlock.FACING);
 

@@ -17,6 +17,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -64,16 +66,12 @@ public class TreeTapBlock extends HorizontalDirectionalBlock implements EntityBl
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        switch (blockState.getValue(FACING)) {
-            case EAST:
-                return SHAPE_EAST;
-            case WEST:
-                return SHAPE_WEST;
-            case SOUTH:
-                return SHAPE_SOUTH;
-            default:
-                return SHAPE_NORTH;
-        }
+        return switch (blockState.getValue(FACING)) {
+            case EAST -> SHAPE_EAST;
+            case WEST -> SHAPE_WEST;
+            case SOUTH -> SHAPE_SOUTH;
+            default -> SHAPE_NORTH;
+        };
     }
 
     @Override
@@ -92,7 +90,6 @@ public class TreeTapBlock extends HorizontalDirectionalBlock implements EntityBl
             level.addParticle(ParticleTypes.END_ROD, x, y, z, 0D, 0D, 0D);
         }
     }
-
 
 
     @Nullable
