@@ -2,6 +2,7 @@ package io.alwa.mods.myrtrees.common;
 
 import dev.architectury.hooks.level.biome.BiomeProperties;
 import dev.architectury.registry.CreativeTabRegistry;
+import dev.architectury.registry.fuel.FuelRegistry;
 import dev.architectury.registry.level.biome.BiomeModifications;
 import dev.architectury.utils.EnvExecutor;
 import io.alwa.mods.myrtrees.common.block.MyrtreesBlocks;
@@ -13,6 +14,7 @@ import io.alwa.mods.myrtrees.common.worldgen.RubberwoodTreeTrunkPlacer;
 import net.fabricmc.api.EnvType;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +22,10 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
 
 public class Myrtrees {
     public static final String MOD_ID = "myrtrees";
@@ -39,8 +44,9 @@ public class Myrtrees {
 
     public static void afterRegistries() {
         // WHY ARE YOU NOT WORKING
-        RUBBER_TREE_FEATURE = Registry.register(BuiltinRegistries.PLACED_FEATURE, new ResourceLocation(MOD_ID, "rubberwood_tree"), Feature.TREE.configured(RubberwoodTreeGrower.getRubberwoodTreeConfiguration()).placed());
+        RUBBER_TREE_FEATURE = Registry.register(BuiltinRegistries.PLACED_FEATURE, new ResourceLocation(MOD_ID, "rubberwood_tree"), Feature.TREE.configured(RubberwoodTreeGrower.getRubberwoodTreeConfiguration()).placed(CountPlacement.of(MyrtreesConfig.TREE_CHANCE), SurfaceWaterDepthFilter.forMaxDepth(0), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
         RUBBER_TREE_TRUNK_PLACER = MixinTrunkPlacerType.callRegister("rubberwood_tree_placer", RubberwoodTreeTrunkPlacer.CODEC);
+        FuelRegistry.register(300, MyrtreesItems.RUBBERWOOD_LOG.get(), MyrtreesItems.RUBBERWOOD_PLANKS.get());
     }
 
     private static void biomeModifications(BiomeModifications.BiomeContext context, BiomeProperties.Mutable properties) {
