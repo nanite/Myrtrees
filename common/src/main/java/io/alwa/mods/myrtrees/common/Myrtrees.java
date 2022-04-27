@@ -22,10 +22,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
-import net.minecraft.world.level.levelgen.placement.BiomeFilter;
-import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
 
 public class Myrtrees {
     public static final String MOD_ID = "myrtrees";
@@ -44,7 +41,7 @@ public class Myrtrees {
 
     public static void afterRegistries() {
         // WHY ARE YOU NOT WORKING
-        RUBBER_TREE_FEATURE = Registry.register(BuiltinRegistries.PLACED_FEATURE, new ResourceLocation(MOD_ID, "rubberwood_tree"), Feature.TREE.configured(RubberwoodTreeGrower.getRubberwoodTreeConfiguration()).placed(CountPlacement.of(MyrtreesConfig.TREE_CHANCE), SurfaceWaterDepthFilter.forMaxDepth(0), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+        RUBBER_TREE_FEATURE = Registry.register(BuiltinRegistries.PLACED_FEATURE, new ResourceLocation(MOD_ID, "rubberwood_tree"), Feature.TREE.configured(RubberwoodTreeGrower.getRubberwoodTreeConfiguration()).placed(PlacementUtils.countExtra(6, 0.25f, 1)));
         RUBBER_TREE_TRUNK_PLACER = MixinTrunkPlacerType.callRegister("rubberwood_tree_placer", RubberwoodTreeTrunkPlacer.CODEC);
         FuelRegistry.register(300, MyrtreesItems.RUBBERWOOD_LOG.get(), MyrtreesItems.RUBBERWOOD_PLANKS.get());
     }
