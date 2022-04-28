@@ -44,8 +44,6 @@ dependencies {
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
     modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
 
-    modImplementation "pro.mikey:advanced-xray-fabric:1.18.2-1.0.0-build.11"
-
     common(project(path: ":common", configuration: "dev")) {
         transitive = false
     }
@@ -85,6 +83,7 @@ jar {
 }
 
 sourcesJar {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
     def commonSources = project(":common").sourcesJar
     dependsOn commonSources
     from commonSources.archiveFile.map { zipTree(it) }
