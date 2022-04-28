@@ -13,13 +13,17 @@ configurations {
     dev
 }
 
-
 artifacts {
     dev(jar)
 }
 
 java {
     withSourcesJar()
+}
+
+
+loom {
+    accessWidenerPath = file("src/main/resources/myrtrees.accesswidener")
 }
 
 publishing {

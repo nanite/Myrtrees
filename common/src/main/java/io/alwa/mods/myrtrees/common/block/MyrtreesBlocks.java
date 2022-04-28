@@ -17,4 +17,5 @@ public interface MyrtreesBlocks {
     Supplier<Block> FILLED_RUBBERWOOD_LOG = REGISTRY.register("filled_rubberwood_log", FilledRubberwoodLogBlock::new);
     Supplier<Block> TREE_TAP = REGISTRY.register("tree_tap", TreeTapBlock::new);
     Supplier<Block> WOODEN_BUCKET = REGISTRY.register("wooden_bucket", WoodenBucketBlock::new);
+
 }

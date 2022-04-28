@@ -14,16 +14,16 @@
       "io.alwa.mods.myrtrees.fabric.MyrtreesModFabric"
     ]
   },
+  "accessWidener": "myrtrees.accesswidener",
   "depends": {
-    "fabricloader": ">=0.7.4",
+    "fabricloader": ">=0.13.3",
     "fabric": "*",
-    "minecraft": ">=1.16.4",
-    "architectury": ">=1.22.32"
+    "minecraft": ">=1.18.2",
+    "architectury": ">=4.2.50"
   },
   "suggests": {
     "flamingo": "*"
   },
   "mixins": [
-    "myrtrees-common.mixins.json"
   ]
 }
