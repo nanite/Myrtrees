@@ -8,5 +8,4 @@ public class RubberwoodSaplingBlock extends SaplingBlock {
     public RubberwoodSaplingBlock() {
         super(new RubberTreeGeneration.RubberWoodTree(), Properties.copy(Blocks.JUNGLE_SAPLING).noOcclusion());
     }
-    
 }
