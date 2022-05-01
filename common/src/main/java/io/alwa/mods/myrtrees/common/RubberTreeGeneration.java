@@ -25,7 +25,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
@@ -57,10 +57,10 @@ public class RubberTreeGeneration {
         // Setups the feature, how it places, what logs to use, what leaves to use, how it places those leaves etc.
         RUBBER_TREE_CONFIGURED_FEATURE = FeatureUtils.register("rubber_tree", Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(MyrtreesBlocks.RUBBERWOOD_LOG.get()),
-                new RubberwoodTreeTrunkPlacer(5, 2, 2),
+                new RubberwoodTreeTrunkPlacer(5, 3, 0),
                 BlockStateProvider.simple(MyrtreesBlocks.RUBBERWOOD_LEAVES.get()),
-                new AcaciaFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0)),
-                new TwoLayersFeatureSize(1, 0, 2)
+                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                new TwoLayersFeatureSize(1, 0, 1)
         ).ignoreVines().build());
 
         // No clue, copied the Oak tree placement, defines how the placement in the world and a load of checking predicates
@@ -108,7 +108,6 @@ public class RubberTreeGeneration {
         public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader levelSimulatedRW, BiConsumer<BlockPos, BlockState> biConsumer, Random random, int i, BlockPos blockPos, TreeConfiguration treeConfiguration) {
             setDirtAt(levelSimulatedRW, biConsumer, random, blockPos.below(), treeConfiguration);
 
-            System.out.println("Using");
             for (int j = 0; j < i; ++j) {
                 if (j == 1) {
                     biConsumer.accept(blockPos.above(j), MyrtreesBlocks.FILLED_RUBBERWOOD_LOG.get().defaultBlockState());
