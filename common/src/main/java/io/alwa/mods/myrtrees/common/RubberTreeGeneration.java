@@ -67,7 +67,7 @@ public class RubberTreeGeneration {
         RUBBER_TREE_PLACEMENT = PlacementUtils.register(
                 "rubber_tree_placement",
                 RUBBER_TREE_CONFIGURED_FEATURE,
-                PlacementUtils.countExtra(0, 0.05f, 1),
+                PlacementUtils.countExtra(0, 0.01f * MyrtreesConfig.TREE_CHANCE, 1),
                 InSquarePlacement.spread(),
                 VegetationPlacements.TREE_THRESHOLD,
                 PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,
