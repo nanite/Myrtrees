@@ -14,6 +14,8 @@ import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.biome.Biome;
@@ -81,9 +83,7 @@ public class RubberTreeGeneration {
      * Needs to be a Forest, Swamp or Savanna unless the only jungle config is on, then it needs to be jungle
      */
     public static void biomeModifications(BiomeModifications.BiomeContext context, BiomeProperties.Mutable properties) {
-        Biome.BiomeCategory c = context.getProperties().getCategory();
-
-        if (c == Biome.BiomeCategory.JUNGLE || (!MyrtreesConfig.ONLY_JUNGLE && (c == Biome.BiomeCategory.FOREST || c == Biome.BiomeCategory.SWAMP || c == Biome.BiomeCategory.SAVANNA))) {
+        if (context.hasTag(BiomeTags.IS_JUNGLE) || (!MyrtreesConfig.ONLY_JUNGLE && (context.hasTag(BiomeTags.IS_FOREST) || context.hasTag(BiomeTags.HAS_SWAMP_HUT) || context.hasTag(BiomeTags.IS_SAVANNA)))) {
             properties.getGenerationProperties().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RubberTreeGeneration.RUBBER_TREE_PLACEMENT);
         }
     }
@@ -105,14 +105,14 @@ public class RubberTreeGeneration {
         }
 
         @Override
-        public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader levelSimulatedRW, BiConsumer<BlockPos, BlockState> biConsumer, Random random, int i, BlockPos blockPos, TreeConfiguration treeConfiguration) {
-            setDirtAt(levelSimulatedRW, biConsumer, random, blockPos.below(), treeConfiguration);
+        public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader levelSimulatedRW, BiConsumer<BlockPos, BlockState> biConsumer, RandomSource randomSource, int i, BlockPos blockPos, TreeConfiguration treeConfiguration) {
+            setDirtAt(levelSimulatedRW, biConsumer, randomSource, blockPos.below(), treeConfiguration);
 
             for (int j = 0; j < i; ++j) {
                 if (j == 1) {
                     biConsumer.accept(blockPos.above(j), MyrtreesBlocks.FILLED_RUBBERWOOD_LOG.get().defaultBlockState());
                 } else {
-                    placeLog(levelSimulatedRW, biConsumer, random, blockPos.above(j), treeConfiguration);
+                    placeLog(levelSimulatedRW, biConsumer, randomSource, blockPos.above(j), treeConfiguration);
                 }
             }
 
@@ -127,7 +127,7 @@ public class RubberTreeGeneration {
     public static class RubberWoodTree extends AbstractTreeGrower {
         @Nullable
         @Override
-        protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(Random random, boolean bl) {
+        protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource random, boolean bl) {
             return RUBBER_TREE_CONFIGURED_FEATURE;
         }
     }

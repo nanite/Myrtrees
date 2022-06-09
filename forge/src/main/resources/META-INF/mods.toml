@@ -15,20 +15,20 @@ Myrtrees
 [[dependencies.myrtrees]]
 modId = "forge"
 mandatory = true
-versionRange = "[35,)"
+versionRange = "[41,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.myrtrees]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.16.2,)"
+versionRange = "[1.19,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.myrtrees]]
 modId = "architectury"
 mandatory = true
-versionRange = "[1.22.32,)"
+versionRange = "[5.6.21,)"
 ordering = "AFTER"
 side = "BOTH"

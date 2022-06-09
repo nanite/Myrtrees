@@ -7,6 +7,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -81,7 +82,7 @@ public class TreeTapBlock extends HorizontalDirectionalBlock implements EntityBl
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void animateTick(BlockState blockState, Level level, BlockPos blockPos, Random random) {
+    public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource random) {
         if (blockState.getValue(FLOWING)) {
             Direction facing = blockState.getValue(FACING);
             double x = blockPos.getX() + 0.5D + facing.getStepX() * 0.3D;

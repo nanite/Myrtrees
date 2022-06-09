@@ -10,7 +10,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -37,6 +36,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import java.awt.*;
 import java.util.List;
 
 public class WoodenBucketBlock extends Block implements EntityBlock {
@@ -133,7 +133,7 @@ public class WoodenBucketBlock extends Block implements EntityBlock {
             }
 
             if (!level.isClientSide()) {
-                player.displayClientMessage(new TextComponent(String.format("%,d / %,d", e.latex, MyrtreesConfig.BUCKET_CAPACITY)), true);
+                player.displayClientMessage(Component.literal(String.format("%,d / %,d", e.latex, MyrtreesConfig.BUCKET_CAPACITY)), true);
             }
         }
 
@@ -144,7 +144,7 @@ public class WoodenBucketBlock extends Block implements EntityBlock {
     @Environment(EnvType.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> list, TooltipFlag flag) {
         if (stack.hasTag() && stack.getTag().contains("BlockEntityTag")) {
-            list.add(new TextComponent(String.format("%,d / %,d", stack.getTag().getCompound("BlockEntityTag").getInt("latex"), MyrtreesConfig.BUCKET_CAPACITY)).withStyle(ChatFormatting.GRAY));
+            list.add(Component.literal(String.format("%,d / %,d", stack.getTag().getCompound("BlockEntityTag").getInt("latex"), MyrtreesConfig.BUCKET_CAPACITY)).withStyle(ChatFormatting.GRAY));
         }
     }
 }
