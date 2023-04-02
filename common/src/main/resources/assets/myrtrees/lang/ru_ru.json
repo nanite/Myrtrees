@@ -1,0 +1,11 @@
+{
+  "itemGroup.myrtrees.myrtrees_tab": "Myrtrees",
+  "block.myrtrees.rubberwood_log": "Бревно резинового дерева",
+  "block.myrtrees.rubberwood_planks": "Доски резинового дерева",
+  "block.myrtrees.rubberwood_sapling": "Саженец резинового дерева",
+  "block.myrtrees.rubberwood_leaves": "Листья резинового дерева",
+  "block.myrtrees.wooden_bucket": "Деревянное ведро",
+  "block.myrtrees.tree_tap": "Кран для сбора латекса",
+  "item.myrtrees.latex": "Латекс",
+  "fluid.latex": "Латекс"
+}
